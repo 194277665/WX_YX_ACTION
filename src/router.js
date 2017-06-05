@@ -1,3 +1,5 @@
+
+import home from './pages/home/home.vue'
 import index from './pages/index/index.vue';
 import visit from './components/visit/visit.vue';
 import meeting from './components/meeting/meeting.vue';
@@ -9,32 +11,37 @@ import searchCompus from './pages/searchCompus.vue'
 export default {
     routes: [
         {
-            path: '/',
+            path:'/',
+            component:home,
+
+        },
+        {
+            path: '/index',
             component: index,
             children: [
                 {
                     name: 'Visit',
-                    path: 'visit',
+                    path: '/visit',
                     component: visit
                 },
                 {
-                    path: 'meeting',
+                    path: '/meeting',
                     component: meeting
                 },
                 {
-                    path: 'office',
+                    path: '/office',
                     component: office
                 },
                 {
-                    path: 'activity',
+                    path: '/activity',
                     component: activity
                 },
                 {
-                    path: 'sell',
+                    path: '/sell',
                     component: sell
                 },
                 {
-                    path: 'other',
+                    path: '/other',
                     component: other
                 }
             ]

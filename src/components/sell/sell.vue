@@ -6,7 +6,8 @@
         </div>
         <div>
             <span>支持内容：</span>
-            <input type="text" value="" class="ZCNR"/>
+            <!--<input type="text" value="" class="ZCNR"/>-->
+            <textarea  value="" class="ZCNR"></textarea>
         </div>
         <div>
             <span>时间：</span>
@@ -16,7 +17,7 @@
 
         <div class="div-button">
             <mt-button type="primary" size="small" @click="submit">提交</mt-button>
-            <mt-button type="primary" size="small">关闭</mt-button>
+            <mt-button type="primary" size="small" @click="close">关闭</mt-button>
         </div>
 
     </div>
@@ -40,6 +41,11 @@
         width: 100%;
         border: solid 1PX #f9f9f9;
         height: 30PX;
+    }
+    textarea{
+        width: 100%;
+        height: 80PX;
+
     }
 </style>
 
@@ -81,8 +87,13 @@
                     Indicator.close();
                     if (data.code == 0) {
                         Toast('提交成功');
+                        this.close();
                     }
                 });
+            },
+            close(){
+                this.$router.go(-2);
+
             }
         },
         data(){

@@ -20,7 +20,8 @@
         </div>
         <div>
             <span>活动成果：</span>
-            <input type="text" value="" class="HDCG"/>
+            <!--<input type="text" value="" class="HDCG"/>-->
+            <textarea value="" class="HDCG"></textarea>
         </div>
         <div class="div-button">
             <mt-button type="primary" size="small" @click="submit">提交</mt-button>
@@ -50,6 +51,11 @@
         width: 100%;
         border: solid 1PX #f9f9f9;
         height: 30PX;
+    }
+    textarea{
+        width: 100%;
+        height: 80PX;
+
     }
 </style>
 
@@ -92,8 +98,13 @@
                     if(data.code == 0)
                     {
                         Toast('提交成功');
+                        this.close();
                     }
                 });
+            },
+            close(){
+                this.$router.go(-2);
+
             }
 
         },

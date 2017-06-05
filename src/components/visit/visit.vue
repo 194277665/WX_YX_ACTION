@@ -1,24 +1,16 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
     <div class="content">
         <div>
             <span>客户名称：</span>
             <select v-model="KHBH">
                 <option :value="item.KHBH" v-for="(item,index) in schools">{{item.KHMC}}</option>
             </select>
-            <!--<div class="khmc"  @click="goToSearch" >-->
-            <!--<span>{{compusInfo.KHMC}}</span>-->
-            <!--</div>-->
-            <!--<input type="text" v-model="compusInfo.KHMC" value=""/>-->
         </div>
         <div>
             <span>拜访对象：</span>
             <input type="text" value="" class="BFDX"/>
 
         </div>
-        <!--<div>-->
-        <!--<span>公司参与人员：</span>-->
-        <!--<input type="text" value="" class="CYRY"/>-->
-        <!--</div>-->
         <div>
             <div class="div-inline">
                 <span>是否存在风险：</span>
@@ -38,21 +30,18 @@
         </div>
         <div>
             <span v-show="FX == 1">风险详情：</span>
-            <input type="text" value="" class="FXXQ" v-show="FX == 1"/>
+            <!--<input type="text" value="" class="FXXQ" v-show="FX == 1"/>-->
+            <textarea value="" class="FXXQ" v-show="FX == 1"></textarea>
         </div>
         <div>
             <span v-show="ZYXZ == 1">所需协助内容：</span>
-            <input type="text" value="" class="SXXZNR" v-show="ZYXZ == 1"/>
+            <!--<input type="text" value="" class="SXXZNR" v-show="ZYXZ == 1"/>-->
+            <textarea value="" class="SXXZNR" v-show="ZYXZ == 1"></textarea>
         </div>
         <div>
             <span v-show="ZYXZ == 1">协助人：</span>
             <input type="text" value="" class="XZRID" v-show="ZYXZ == 1"/>
         </div>
-        <!--<div>-->
-        <!--<span>时间：</span>-->
-        <!--&lt;!&ndash;<input type="text" value="" class="SJ" />&ndash;&gt;-->
-        <!--<mu-date-picker hintText="选择时间" v-model="selectDate"/>-->
-
         <div>
             <span>开始时间：</span>
             <!--<input type="text" value="" class="SJ" />-->
@@ -66,7 +55,7 @@
         <!--</div>-->
         <div class="div-button">
             <mt-button type="primary" size="small" @click="submit">提交</mt-button>
-            <mt-button type="primary" size="small">关闭</mt-button>
+            <mt-button type="primary" size="small" @click="close">关闭</mt-button>
         </div>
     </div>
 </template>
@@ -119,12 +108,11 @@
         height: 30PX;
     }
 
-    /*.khmc{*/
-    /*width: 100%;*/
-    /*height: 50PX;*/
-    /*background:  #ff0000;*/
+    textarea{
+        width: 100%;
+        height: 80PX;
 
-    /*}*/
+    }
 </style>
 
 <script type="text/javascript">
@@ -147,9 +135,9 @@
 
 //            var url = 'http://amptest.wisedu.com/pw/sys/yxgl/modules/yddyxgl/xwjlkhcx.do';
             var url = './modules/yddyxgl/xwjlkhcx.do';
-            Indicator.open();
+//            Indicator.open();
             $.post(url, (data) => {
-                Indicator.close();
+//                Indicator.close();
                 this.schools = data.datas.xwjlkhcx.rows;
                 console.log(data);
             });
@@ -226,8 +214,13 @@
                     Indicator.close();
                     if (data.code == 0) {
                         Toast('提交成功');
+                        this.close();
                     }
                 });
+            },
+            close(){
+                this.$router.go(-2);
+
             }
 
 

@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div class="content">
         <div>
             <span>事项主题：</span>
@@ -6,11 +6,13 @@
         </div>
         <div>
             <span>事项内容：</span>
-            <input type="text" value="" class="SXNR"/>
+            <!--<input type="text" value="" class="SXNR"/>-->
+            <textarea value="" class="SXNR"></textarea>
         </div>
         <div>
             <span>事项说明：</span>
-            <input type="text" value="" class="SXSM"/>
+            <!--<input type="text" value="" class="SXSM"/>-->
+            <textarea value="" class="SXSM"></textarea>
         </div>
         <div>
             <span>时间：</span>
@@ -19,7 +21,7 @@
         </div>
         <div class="div-button">
             <mt-button type="primary" size="small" @click="submit">提交</mt-button>
-            <mt-button type="primary" size="small">关闭</mt-button>
+            <mt-button type="primary" size="small"  @click="close">关闭</mt-button>
         </div>
     </div>
 </template>
@@ -41,6 +43,11 @@
         width: 100%;
         border: solid 1PX #f9f9f9;
         height: 30PX;
+    }
+    textarea{
+        width: 100%;
+        height: 80PX;
+
     }
 </style>
 
@@ -81,8 +88,13 @@
                     if(data.code == 0)
                     {
                         Toast('提交成功');
+                        this.close();
                     }
                 });
+            },
+            close(){
+                this.$router.go(-2);
+
             }
 
         },

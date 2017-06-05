@@ -10,11 +10,13 @@
         </div>
         <div>
             <span>会议内容：</span>
-            <input type="text" value="" class="HYNR"/>
+            <!--<input type="text" value="" class="HYNR"/>-->
+            <textarea  value="" class="HYNR"></textarea>
         </div>
         <div>
             <span>会议结论：</span>
-            <input type="text" value="" class="HYJL"/>
+            <!--<input type="text" value="" class="HYJL"/>-->
+            <textarea value="" class="HYJL"></textarea>
         </div>
         <div>
             <span>会议时间：</span>
@@ -50,6 +52,11 @@
         width: 100%;
         border: solid 1PX #f9f9f9;
         height: 30PX;
+    }
+    textarea{
+        width: 100%;
+        height: 80PX;
+
     }
 </style>
 
@@ -112,10 +119,14 @@
                     if(data.code == 0)
                     {
                         Toast('提交成功');
+                        this.close();
                     }
                 });
+        },
+            close(){
+                this.$router.go(-2);
 
-        }
+            }
 
      },
         watch:{
